@@ -32,7 +32,9 @@ class SVGcode:
 			subdiv=max(1,round(segment.length(error=1e-5)*subdivratio))
 
 			if isinstance(segment, Move):
+				gcode.append('G0 Z5')
 				gcode.append('G0 X%s Y%s' % (rv(segment.end.x), rv(-segment.end.y)))
+				gcode.append('G0 Z0')
 			if isinstance(segment, Arc):
 				if segment.sweep: garc = "G02"
 				else: garc = "G03"
